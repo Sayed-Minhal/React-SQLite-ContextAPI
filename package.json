@@ -1,0 +1,44 @@
+{
+  "name": "reactmanualconfig",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "babel-loader": {
+    "preset": [
+      "react",
+      "es2015"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
+  },
+  "scripts": {
+    "start-webp": "node node_modules\\webpack\\bin\\webpack.js -d --config config.webpack.js --open --hot",
+    "start": "webpack-dev-server --config config.webpack.js --open --hot",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "sqlite": "^3.0.3",
+    "sqlite3": "^4.0.9"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.0",
+    "@babel/plugin-proposal-class-properties": "^7.5.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "html-webpack-plugin": "^4.0.0-beta.5",
+    "path": "^0.12.7",
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
+  }
+}
