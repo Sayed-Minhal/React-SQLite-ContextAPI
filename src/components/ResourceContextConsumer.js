@@ -27,10 +27,11 @@ import Grid from '@material-ui/core/Grid';
   
  function MediaCard(props) {
 	const classes = useStyles();
+	console.log(props);
   
 	return (
 	<React.Fragment>
-        <Grid item xs={1} md={2} lg={3} >
+        
           
 	  <Card className={classes.card}>
 		<CardActionArea>
@@ -47,15 +48,15 @@ import Grid from '@material-ui/core/Grid';
 		</CardActionArea>
 		<CardActions>
 		  <Button size="small" color="primary">
-			Share
+			Get Tracks
 		  </Button>
-		  <Button size="small" color="primary">
-			Learn More
+		  <Button size="small" color="primary" onClick={(e)=>{props.getAlbumsForArtist(props.Album.ArtistId)}}>
+			Same Artist
 		  </Button>
 		</CardActions>
 	  </Card>
 	  
-        </Grid>
+        
 		</React.Fragment>
 	);
   }
@@ -81,13 +82,25 @@ class ResourceContextConsumer extends React.Component {
 		return (
 		<ResourceContext.Consumer>{
 			(context)=>
-			<div style={{"flexGrow":1}}>
-				<Grid container spacing={1}>
-				{context.data!=undefined? context.data.map(Album=>
-					<MediaCard Album={Album} key={Album.AlbumId}/>
-					
-					) :'' }
+			<div style={{"flexGrow":1}} >
+				<Grid container spacing={3}>
+					<Grid item lg={context.ArtistSelected==true?9:12}>
+						<Grid container spacing={3}>
+							{context.data!=undefined? context.data.map(Album=><Grid item xs={3} key={Album.AlbumId}><MediaCard Album={Album} getAlbumsForArtist={context.getAlbumsForArtist}/></Grid>) :'' }
+						</Grid>
 					</Grid>
+					
+					<Grid item lg={context.ArtistSelected==true?3:null} style={{'background':'#F3F3F3'}}>
+					<Typography gutterBottom variant="h5" component="h3" noWrap>
+					  Albums of Selected Artist
+					</Typography>
+					<Grid container spacing={2}>{
+						context.SelectedAlbums!=undefined? 
+							context.SelectedAlbums.map(Album=><Grid item xs={12} key={Album.AlbumId}><MediaCard Album={Album} key={Album.AlbumId} getAlbumsForArtist={context.getAlbumsForArtist}/></Grid>):''
+					}</Grid>
+					</Grid>
+				</Grid>
+				
 			</div>
 			
 			}</ResourceContext.Consumer>);
