@@ -19,6 +19,14 @@ module.exports={
 			  plugins: ["@babel/plugin-proposal-class-properties"]
 			}
 		  }
+		},
+		{
+			test: /\.css$/i,
+			use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+		},
+		{
+			test: /\.(jpe?g|png|gif|svg)$/i, 
+			loader: "file-loader?name=public/[name].[ext]"
 		}
 	  ]
 	},
